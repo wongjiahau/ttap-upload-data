@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {COURSES} from './courses';
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      courses: COURSES
+    };
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Upload TTAP data</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div>
+          <form>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Index</th>
+                  <th>COURSE NAME</th>
+                  <th>FILE</th>
+                </tr>
+              {this.state.courses.map((x, index) => (
+                <tr>
+                  <td>{index}</td>
+                  <td>{x}</td>
+                  <td><input type="file" name={`file${index}`} id={`_file${index}`}/></td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
+            <input id="_submitBtn" type="submit" value="Submit"/>
+          </form>
+        </div>
       </div>
     );
   }
