@@ -1,3 +1,4 @@
+// These data are scrapped from http://fes.utar.edu.my/academic/undergraduate-programmes/
 export const COURSES = [
     "Actuarial Science",
     "Applied Mathematics with Computing",
