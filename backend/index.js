@@ -22,7 +22,13 @@ app.post('/upload', function (req, res) {
                     return res.status(500).send(err);
                 }
                 const { exec } = require('child_process');
-                exec('cd .. && git add . && git commit -m "Update" && git push', (err, stdout, stderr) => {
+                exec(`
+                    mv ./uploads/* ../../ttap-datahub && 
+                    cd ../../ttap-datahub && 
+                    git add . && 
+                    git commit -m "Update" && 
+                    git push
+                    `, (err, stdout, stderr) => {
                 if (err) {
                     // node couldn't execute the command
                     return;
