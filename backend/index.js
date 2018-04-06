@@ -14,20 +14,25 @@ app.post('/upload', function (req, res) {
     if (!req.files) {
         return res.status(400).send('No files were uploaded.');
     }
-    return res.status(200).send(JSON.stringify(req.files));
-
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the
-    // uploaded file
-    let sampleFile = req.files.sampleFile;
-
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv('/home/hou32hou', function (err) {
-        if (err) {
-            return res.status(500).send(err);
+    for (var k in req.files) {
+        if (req.files.hasOwnProperty(k)) {
+            const file = req.files[k];
+            file.mv(`./uploads/${k}.html`, (err) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+            });
         }
-
-        res.send('File uploaded!');
-    });
+    }
+    setTimeout(() => {
+        res.status(200).send(`
+            <div>
+                <h1>File uploaded successfully.</h1>
+                <button onclick='window.history.back()'>Click here to go back</button>
+            </div>
+        `);
+        // res.status(200).send(JSON.stringify(req.files));
+    }, 5000)
 });
 
 app.get('/hello', (req, res, next) => {
