@@ -21,6 +21,17 @@ app.post('/upload', function (req, res) {
                 if (err) {
                     return res.status(500).send(err);
                 }
+                const { exec } = require('child_process');
+                exec('cd .. && git add . && git commit -m "Update" && git push', (err, stdout, stderr) => {
+                if (err) {
+                    // node couldn't execute the command
+                    return;
+                }
+
+                // the *entire* stdout and stderr (buffered)
+                console.log(`stdout: ${stdout}`);
+                console.log(`stderr: ${stderr}`);
+                });
             });
         }
     }
