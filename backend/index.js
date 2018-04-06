@@ -25,7 +25,7 @@ app.post('/upload', function (req, res) {
         }
     }
     setTimeout(() => {
-        const { exec } = require('child_process');
+        const exec = require('child_process').exec;
         exec(`
             mv ./uploads/* ../../ttap-datahub && 
             cd ../../ttap-datahub && 
