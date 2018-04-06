@@ -17,7 +17,7 @@ class App extends Component {
           <h1 className="App-title">Upload TTAP data</h1>
         </header>
         <div>
-          <form method="POST" action="http://localhost:8080/upload" encType="multipart/form-data">
+          <form method="POST" action="http://localhost/upload" encType="multipart/form-data">
             <table>
               <tbody>
                 <tr>
@@ -30,7 +30,7 @@ class App extends Component {
                 <tr style={{backgroundColor: x.gotFile ? "lightgreen" : ""}}>
                   <td>{index}</td>
                   <td>{x.name}</td>
-                  <td><input type="file" onChange={this.handleFileOnChange(index)} accept=".html" name={`file${index}`} id={`_file${index}`}/></td>
+                  <td><input type="file" onChange={this.handleFileOnChange(index)} accept=".html" name={x.name.replace(' ', '_')} id={`_file${index}`}/></td>
                   <td>
                     {x.gotFile ? <span>&#10003;</span> : <span>&#10060;</span>}
                   </td>
