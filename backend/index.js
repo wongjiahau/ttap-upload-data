@@ -21,27 +21,28 @@ app.post('/upload', function (req, res) {
                 if (err) {
                     return res.status(500).send(err);
                 }
-                const { exec } = require('child_process');
-                exec(`
-                    mv ./uploads/* ../../ttap-datahub && 
-                    cd ../../ttap-datahub && 
-                    git add . && 
-                    git commit -m "Update" && 
-                    git push
-                    `, (err, stdout, stderr) => {
-                if (err) {
-                    // node couldn't execute the command
-                    return;
-                }
-
-                // the *entire* stdout and stderr (buffered)
-                console.log(`stdout: ${stdout}`);
-                console.log(`stderr: ${stderr}`);
-                });
             });
         }
     }
     setTimeout(() => {
+        const { exec } = require('child_process');
+        exec(`
+            mv ./uploads/* ../../ttap-datahub && 
+            cd ../../ttap-datahub && 
+            git add . && 
+            git commit -m "Update" && 
+            git push && 
+            echo "Success"
+            `, (err, stdout, stderr) => {
+        if (err) {
+            // node couldn't execute the command
+            return;
+        }
+
+        // the *entire* stdout and stderr (buffered)
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
+        });
         res.status(200).send(`
             <div>
                 <h1>File uploaded successfully.</h1>
