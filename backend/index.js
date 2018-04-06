@@ -57,6 +57,6 @@ app.get('/hello', (req, res, next) => {
     res.send('Hello world!');
 })
 
-const PORT = '8080';
+const PORT = '80';
 app.listen(PORT);
 console.log("Listening on port " + PORT);

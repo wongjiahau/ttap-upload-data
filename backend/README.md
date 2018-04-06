@@ -7,5 +7,5 @@ npm install
 ## How to start the server?
 ```
 cd backend
-node index.js
+sudo node index.js
 ```

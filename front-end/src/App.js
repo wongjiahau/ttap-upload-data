@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import {COURSES} from './courses';
 
+const LINK = 'http://35.187.225.102'; // For deployment
+// const LINK = 'http://localhost'; // For development
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +20,7 @@ class App extends Component {
           <h1 className="App-title">Upload TTAP data</h1>
         </header>
         <div>
-          <form method="POST" action="http://localhost:8080/upload" encType="multipart/form-data">
+          <form method="POST" action={`${LINK}/upload`} encType="multipart/form-data">
             <table>
               <tbody>
                 <tr>
