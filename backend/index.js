@@ -27,7 +27,7 @@ app.post('/upload', function (req, res) {
     setTimeout(() => {
         const exec = require('child_process').exec;
         exec(`
-            mv ./uploads/* ../../ttap-datahub && 
+            mv ./uploads/*.html ../../ttap-datahub && 
             cd ../../ttap-datahub && 
             git add . && 
             git commit -m "Update" && 
